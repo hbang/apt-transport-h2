@@ -1,0 +1,10 @@
+Package: ws.hbang.apt-transport-h2
+Name: APT-H2
+Depends: firmware (>= 9.0), apt7-lib (>= 0.7.25.3-14)
+Version: 0.0.1
+Architecture: iphoneos-arm
+Description: An awesome tool of some sort!!
+Maintainer: HASHBANG Productions <support@hbang.ws>
+Author: HASHBANG Productions <support@hbang.ws>
+Section: Packaging
+Tag: purpose::library, role::developer
