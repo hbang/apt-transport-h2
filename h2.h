@@ -33,5 +33,3 @@ class H2Method : public pkgAcqMethod
 		Configure();
 	};
 };
-
-URI Proxy;
