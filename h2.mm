@@ -41,14 +41,18 @@ void H2Method::Configure() {
 	}
 
 	// use our config to make an NSURLSession for ourselves
-	Session = [NSURLSession sessionWithConfiguration:configuration delegate:[[HBH2SessionDelegate alloc] initWithH2Method:this] delegateQueue:nil];
+	Session = [[NSURLSession sessionWithConfiguration:configuration delegate:[[HBH2SessionDelegate alloc] initWithH2Method:this] delegateQueue:nil] retain];
 }
 
 
 bool H2Method::Fetch(FetchItem *Itm) {
-	// bool verbose = _config->FindB("Debug::Acquire::h2", false);
+	URI uri = Itm->Uri;
+	string uriString = static_cast<string>(uri);
 
-	NSURL *url = [NSURL URLWithString:@(Itm->Uri.c_str())];
+	NSString *urlString = @(uriString.c_str());
+	urlString = [@"http" stringByAppendingString:[urlString substringFromIndex:3]];
+
+	NSURL *url = [NSURL URLWithString:urlString];
 	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 
 	NSURLSessionDownloadTask *task = [Session downloadTaskWithRequest:request];
